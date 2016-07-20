@@ -92,7 +92,7 @@
 
 <p>To create an instance of the Predix Event Audit Trail Service, please use the <a href="https://github.com/cloudfoundry/cli">Cloud Foundry CLI tool</a> to run the following command:</p>
 
-<pre><code>cf create-service predix-event-audit-trail &lt;plan&gt; &lt;service_instance_name&gt; -c '{“trustedIssuerId”: “&lt;predix uaa instance url&gt;/oauth/token”}'
+<pre><code>cf create-service event-audit-trail &lt;plan&gt; &lt;service_instance_name&gt; -c '{“trustedIssuerId”: “&lt;predix uaa instance url&gt;/oauth/token”}'
 </code></pre>
 
 <p>Once a service instance is created , you will be issued a tenant uuid for the created service instance.  You can obtain this tenant uuid by binding an application to
@@ -103,7 +103,7 @@ the service instance.  You can bind an application to the service instance with 
 
 <p>The application's <em>VCAP SERVICES</em> will contain the following variables:</p>
 
-<pre><code>"predix-event-audit-trail": [
+<pre><code>"event-audit-trail": [
    {
     "credentials": {
      "catalog-uri": "&lt;service url&gt;",
@@ -112,7 +112,7 @@ the service instance.  You can bind an application to the service instance with 
      "trusted-issuer-ids": "&lt;trusted issuers&gt;",
      "zone-oauth-scope": "event-audit-trail.zone.&lt;tenant uuid&gt;.user"
     },
-    "label": "predix-event-audit-trail",
+    "label": "event-audit-trail",
     "name": "&lt;service_instance_name&gt;",
     "plan": "&lt;plan&gt;",
     "provider": null,
