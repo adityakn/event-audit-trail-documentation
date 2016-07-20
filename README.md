@@ -34,7 +34,7 @@ The Predix Event Audit Trail Service is an data persistence service that represe
 To create an instance of the Predix Event Audit Trail Service, please use the [Cloud Foundry CLI tool](https://github.com/cloudfoundry/cli) to run the following command:
 
 ```
-cf create-service predix-event-audit-trail <plan> <service_instance_name> -c '{“trustedIssuerId”: “<predix uaa instance url>/oauth/token”}'
+cf create-service event-audit-trail <plan> <service_instance_name> -c '{“trustedIssuerId”: “<predix uaa instance url>/oauth/token”}'
 ```
 
 Once a service instance is created , you will be issued a tenant uuid for the created service instance.  You can obtain this tenant uuid by binding an application to
@@ -47,7 +47,7 @@ cf bind-service <app_name> <service_instance_name>
 The application's *VCAP SERVICES* will contain the following variables:
 
 ```
-"predix-event-audit-trail": [
+"event-audit-trail": [
    {
     "credentials": {
      "catalog-uri": "<service url>",
@@ -56,7 +56,7 @@ The application's *VCAP SERVICES* will contain the following variables:
      "trusted-issuer-ids": "<trusted issuers>",
      "zone-oauth-scope": "event-audit-trail.zone.<tenant uuid>.user"
     },
-    "label": "predix-event-audit-trail",
+    "label": "event-audit-trail",
     "name": "<service_instance_name>",
     "plan": "<plan>",
     "provider": null,
