@@ -46,6 +46,14 @@
 <ul>
 <li><a href="#creating-service-instance">Creating service instance</a></li>
 <li><a href="#auto-archive">Auto archive</a></li>
+<li>
+<a href="#uaa-configuration">UAA configuration</a>
+
+<ul>
+<li><a href="#client-credentials">Client credentials</a></li>
+<li><a href="#user-login">User login</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -101,7 +109,7 @@ the service instance.  You can bind an application to the service instance with 
      "catalog-uri": "&lt;service url&gt;",
      "tenant-uuid": "&lt;tenant uuid&gt;",
      "version": "1",
-      "trusted-issuer-ids": "&lt;trusted issuers&gt;",
+     "trusted-issuer-ids": "&lt;trusted issuers&gt;",
      "zone-oauth-scope": "event-audit-trail.zone.&lt;tenant uuid&gt;.user"
     },
     "label": "predix-event-audit-trail",
@@ -120,6 +128,35 @@ the service instance.  You can bind an application to the service instance with 
 <p>You can then use the <a href="#event-apis">service APIs</a> with using the <strong></strong> as the base url.</p>
 
 <p><strong>Note</strong> - Please update your <a href="https://github.com/cloudfoundry/cli">Cloud Foundry CLI tool</a> to the lastest version.</p>
+
+<h4>
+<a id="uaa-configuration" class="anchor" href="#uaa-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>UAA configuration</h4>
+
+<p>Once a tenant uuid has been issued to your instance you will need to add the <strong>zone-oath-scope</strong> to your UAA instance clients.</p>
+
+<h5>
+<a id="client-credentials" class="anchor" href="#client-credentials" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Client credentials</h5>
+
+<p>To use the event audit trail service with the client credentials flow (the SDK requires this), then you need to add the <strong>zone-oath-scope</strong> to your client authorities.  You can do this using the UAA cli with the following command:</p>
+
+<pre><code>uaac client update &lt;client_name&gt; --authorities "&lt;list_of_authorities&gt; event-audit-trail.zone.&lt;tenant uuid&gt;.user"
+</code></pre>
+
+<p>Tokens issue by this client will now be authorized to use the event audit trail service instance.</p>
+
+<h5>
+<a id="user-login" class="anchor" href="#user-login" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>User login</h5>
+
+<p>To use the event audit service with a user-authenticated flow (e.g. predix-seed), you will need to add a group with the proper scope using the UAA cli.</p>
+
+<pre><code>uaac client update &lt;client_name&gt; --scope "&lt;list_of_scope&gt; event-audit-trail.zone.&lt;tenant uuid&gt;.user"
+
+uaac group add event-audit-trail.zone.&lt;tenant uuid&gt;.user
+
+uaac member add event-audit-trail.zone.&lt;tenant uuid&gt;.user &lt;users...&gt;
+</code></pre>
+
+<p>Now tokens issued to this user will be authorized to use the event audit trail service instance.</p>
 
 <h3>
 <a id="auto-archive" class="anchor" href="#auto-archive" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Auto archive</h3>
@@ -183,6 +220,7 @@ the service instance.  You can bind an application to the service instance with 
           "classification": 0,
           "enabled": true,
           "timestamp": 1459378121815,
+          "lastUpdated": 1459378121815,
           "data": "{\"name\": \"test2.csv\"}"
      }
   ],
@@ -222,6 +260,7 @@ the service instance.  You can bind an application to the service instance with 
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
@@ -306,6 +345,7 @@ the service instance.  You can bind an application to the service instance with 
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
@@ -345,6 +385,7 @@ the service instance.  You can bind an application to the service instance with 
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
@@ -400,6 +441,7 @@ the service instance.  You can bind an application to the service instance with 
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
@@ -557,6 +599,7 @@ the service instance.  You can bind an application to the service instance with 
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
@@ -595,6 +638,7 @@ the service instance.  You can bind an application to the service instance with 
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
