@@ -2,11 +2,13 @@
 
 The Predix Event Audit Trail Service is an data persistence service that represents user-defined data and states as events stored in a chronological manner.  The service provides a simple and scalable way to provide an audit trail for user applications.  The Predix Event Audit Trail is available as a service tile in the Predix Cloud and allows users to create, search, update, and delete events through a REST interface. 
 
-
 ## Table of Contents
   - [Usage](#usage)
     - [Creating service instance](#creating-service-instance)
     - [Auto archive](#auto-archive)
+    - [UAA configuration](#uaa-configuration)
+        - [Client credentials](#client-credentials)
+        - [User login](#user-login)
   - [Event service](#event-service)
     - [Get events with filters](#get-events-with-filters)
     - [Get event by uuid](#get-event-by-uuid)
@@ -51,7 +53,7 @@ The application's *VCAP SERVICES* will contain the following variables:
      "catalog-uri": "<service url>",
      "tenant-uuid": "<tenant uuid>",
      "version": "1",
-      "trusted-issuer-ids": "<trusted issuers>",
+     "trusted-issuer-ids": "<trusted issuers>",
      "zone-oauth-scope": "event-audit-trail.zone.<tenant uuid>.user"
     },
     "label": "predix-event-audit-trail",
@@ -70,6 +72,34 @@ The application's *VCAP SERVICES* will contain the following variables:
 You can then use the [service APIs](#event-apis) with using the **<service_url>** as the base url.
 
 **Note** - Please update your [Cloud Foundry CLI tool](https://github.com/cloudfoundry/cli) to the lastest version.
+
+#### UAA configuration
+
+Once a tenant uuid has been issued to your instance you will need to add the **zone-oath-scope** to your UAA instance clients.
+
+##### Client credentials 
+
+To use the event audit trail service with the client credentials flow (the SDK requires this), then you need to add the **zone-oath-scope** to your client authorities.  You can do this using the UAA cli with the following command:
+
+```
+uaac client update <client_name> --authorities "<list_of_authorities> event-audit-trail.zone.<tenant uuid>.user"
+```
+
+Tokens issue by this client will now be authorized to use the event audit trail service instance.
+
+##### User login
+
+To use the event audit service with a user-authenticated flow (e.g. predix-seed), you will need to add a group with the proper scope using the UAA cli.
+
+```
+uaac client update <client_name> --scope "<list_of_scope> event-audit-trail.zone.<tenant uuid>.user"
+
+uaac group add event-audit-trail.zone.<tenant uuid>.user
+
+uaac member add event-audit-trail.zone.<tenant uuid>.user <users...>
+```
+
+Now tokens issued to this user will be authorized to use the event audit trail service instance.
 
 ### Auto archive
 
@@ -115,6 +145,7 @@ Archived and staged events will not be returned by the service using the standar
           "classification": 0,
           "enabled": true,
           "timestamp": 1459378121815,
+          "lastUpdated": 1459378121815,
           "data": "{\"name\": \"test2.csv\"}"
      }
   ],
@@ -142,6 +173,7 @@ Archived and staged events will not be returned by the service using the standar
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
@@ -198,6 +230,7 @@ Archived and staged events will not be returned by the service using the standar
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
@@ -225,6 +258,7 @@ Archived and staged events will not be returned by the service using the standar
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
@@ -261,6 +295,7 @@ Archived and staged events will not be returned by the service using the standar
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
@@ -357,6 +392,7 @@ Archived and staged events will not be returned by the service using the standar
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
@@ -383,6 +419,7 @@ Archived and staged events will not be returned by the service using the standar
       "classification": 0,
       "enabled": true,
       "timestamp": 1459378121815,
+      "lastUpdated": 1459378121815,
       "data": "{\"name\": \"test1.csv\"}"
     },
   ],
