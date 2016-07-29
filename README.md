@@ -339,7 +339,8 @@ Archived and staged events will not be returned by the service using the standar
     "uuid": "77173278-2ba0-457b-b660-09f9a9c87855",
     "tenantUuid": "4b2b0ad4-c54b-4e69-90b1-12d73e36662c",
     "maximumNumberOfEvents": 5,
-    "maximumNumberOfStoredEventsDays": -1
+    "maximumNumberOfStoredEventsDays": -1,
+    "stagedEventThreshold": 10
   }
 ```
 
@@ -349,12 +350,14 @@ Archived and staged events will not be returned by the service using the standar
         * Request Body JSON parameters
             * maximumNumberOfEvents - Maximum number of events to retain (Default=-1)
             * maximumNumberOfStoredEventsDays - Maximum numbers of days of events to retain (Default=-1)
+            * stagedEventThreshold - Maximum staged events before events are permanently archived (Default=-1)
 
 * Sample Request
 ```
 {
   "maximumNumberOfEvents": 100,
-  "maximumNumberOfStoredEventsDays": 30
+  "maximumNumberOfStoredEventsDays": 30,
+  "stagedEventThreshold": 50
 }
 ```
 
