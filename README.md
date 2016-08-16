@@ -445,6 +445,7 @@ These are the service-specific responses embedded in service responses
 * **1007** - Tenant is missing or blank
 * **1008** - Search query is missing or blank
 * **1009** - Invalid search query string
+* **1010** - Event payload has exceeded the set limit
 * **1101** - The archive does not exist
 
 
