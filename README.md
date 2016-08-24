@@ -2,6 +2,8 @@
 
 The Predix Event Audit Trail Service is an data persistence service that represents user-defined data and states as events stored in a chronological manner.  The service provides a simple and scalable way to provide an audit trail for user applications.  The Predix Event Audit Trail is available as a service tile in the Predix Cloud and allows users to create, search, update, and delete events through a REST interface. 
 
+**Please Note** - **Data at rest is *NOT* encrypted.  Please use discretion when storing sensitive data**
+
 ## Table of Contents
   - [Usage](#usage)
     - [Creating service instance](#creating-service-instance)
@@ -445,6 +447,7 @@ These are the service-specific responses embedded in service responses
 * **1007** - Tenant is missing or blank
 * **1008** - Search query is missing or blank
 * **1009** - Invalid search query string
+* **1010** - Event payload has exceeded the set limit
 * **1101** - The archive does not exist
 
 
