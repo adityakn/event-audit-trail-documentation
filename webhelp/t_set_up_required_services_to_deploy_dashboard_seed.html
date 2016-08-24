@@ -1,0 +1,78 @@
+
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+<head><meta name="description" content="Deploy the Hello World application Predix-HelloWorld-WebApp-&lt;YourAppName&gt; for later use. See Deploying a Predix Hello World Web Application . Set up the services required to install the Dashboard ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Setting Up Required Services to Deploy the Dashboard Seed"></meta><meta name="DC.Creator" content="Joseph Aseo"></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_mkc_14c_mw"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Setting Up Required Services to Deploy the Dashboard Seed</title><!--  Generated with Oxygen version 17.1, build number 2016032212.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery.highlight-3.js"><!----></script><script type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" class="frmBody" id="task_mkc_14c_mw">
+<table class="nav"><tbody><tr><td colspan="2"><div id="printlink"><a href="javascript:window.print();" title="Print this page"></a></div><div id="permalink"><a href="#" title="Link to this page"></a></div></td></tr><tr><td width="75%"></td><td><div class="navheader"></div></td></tr></tbody></table>
+<h1 class="title topictitle1">Setting Up Required Services to Deploy the Dashboard Seed</h1>
+<div class="body taskbody"><div class="section prereq p">
+                                    <p class="p">Deploy the Hello World application <samp class="ph codeph">Predix-HelloWorld-WebApp-&lt;YourAppName&gt;</samp> for later use. See <a class="xref" href="t_deploy_a_predix_hello_world_app.html#task_d16f72c1-0f07-452d-b4a1-b5f606dc5cf8">Deploying a Predix Hello World Web Application</a>.</p>
+
+                                    <p class="p">Set up the services required to install the Dashboard Seed. See <a class="xref" href="t_setting_up_required_services_for_the_dashboard_seed.html#task_ick_l3c_t5">Setting Up Required Services to Install the Dashboard Seed</a>.</p>
+
+                                    <p class="p">You need the pathname of the <samp class="ph codeph">predix-seed</samp> directory where the Dashboard Seed project files are located (see <a class="xref" href="t_installing_dashboard_seed.html#task_skl_4cp_c5">Installing the Dashboard Seed</a>). </p>
+
+                        </div>
+<div class="section context">
+                                    <p class="p">You will set up the following service instances required to deploy the Dashboard Seed to Cloud Foundry:</p>
+
+                                    <ul class="ul" id="task_mkc_14c_mw__ul_lck_ftz_nw"><li class="li">UAA service</li>
+<li class="li">View service</li>
+<li class="li">Redis service</li>
+</ul>
+
+                                    <div class="note note"><span class="notetitle">Note:</span> Service instance names are limited to alphanumeric characters and the underscore character (for example, my_service_instance instead of my-service-instance).</div>
+
+                                    <p class="p">You will record the following information for use when deploying the Dashboard Seed to Cloud Foundry:</p>
+
+                                    <ul class="ul" id="task_mkc_14c_mw__ul_fpg_hyp_mv"><li class="li">UAA service <samp class="ph codeph">instanceId</samp> and <samp class="ph codeph">client_secret</samp></li>
+<li class="li">View service <samp class="ph codeph">instanceId</samp></li>
+<li class="li">Redis service <samp class="ph codeph">instanceId</samp></li>
+</ul>
+
+                        </div>
+<ol class="ol steps" id="task_mkc_14c_mw__steps_90f72f0e-7482-4714-acba-9c2110e16d66"><li class="li step stepexpand"><span class="ph cmd">Change to the <samp class="ph codeph">predix-seed</samp> project directory:</span><div class="itemgroup info">
+                                                            <pre class="pre codeblock">cd predix-seed</pre>
+
+                                                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">List the services in the Cloud Foundry marketplace by entering the following command:</span><div class="itemgroup info">
+                                                            <pre class="pre codeblock">cf marketplace</pre>
+
+                                                </div></li>
+<li class="li step stepexpand"><span class="ph cmd"><a class="xref" href="t_creating_uaa_instance.html#task_y1l_vms_2s">Create a UAA service instance</a>. For example:</span><div class="itemgroup info">
+                                                            <pre class="pre codeblock">cf create-service  predix-uaa Basic &lt;uaa_instanceId&gt; -c '{"adminClientSecret":"client_secret&gt;"}'</pre>
+
+                                                </div><div class="itemgroup stepresult">Record the UAA service <samp class="ph codeph">instanceId</samp> and <samp class="ph codeph">client_secret </samp> values defined in this step.</div></li>
+<li class="li step stepexpand"><span class="ph cmd"><a class="xref" href="t_binding_an_app_to_the_uaa_instance.html#task_155dd0e5-ca06-45d3-833e-686a71f0ca98">Bind the Hello World application to the UAA service instance</a>. For example:</span><div class="itemgroup info">
+                                                            <pre class="pre codeblock">cf bind-service Predix-HelloWorld-WebApp-&lt;YourAppName&gt; &lt;uaa_instanceId&gt;</pre>
+
+                                                </div></li>
+<li class="li step stepexpand"><span class="ph cmd"><a class="xref" href="t_creating_a_view_service_instance.html#task_7d917fe1-156b-4dea-9bcf-97ae62cd4f64">Create a View service instance</a> using the <samp class="ph codeph">issuerId</samp> of your trusted issuer (UAA instance). For example:</span><div class="itemgroup info">
+                                                            <pre class="pre codeblock">cf create-service predix-views Standard &lt;view__instanceId&gt; -c '{"trustedIssuerIds":["&lt;uaainstance1host/oauth/token"]</pre>
+
+                                                </div><div class="itemgroup stepresult">Record the View service <samp class="ph codeph">instanceId</samp> defined in this step.</div></li>
+<li class="li step stepexpand"><span class="ph cmd"><a class="xref" href="t_binding_an_application_to_a_view_service_instance.html#task_48d483f8-310b-4043-b842-e984604bf441">Bind the Hello World application to the View service instance.</a> For example:</span><div class="itemgroup info">
+                                                            <pre class="pre codeblock">cf bind-service Predix-HelloWorld-WebApp-&lt;YourAppName&gt; &lt;view_instanceId&gt;</pre>
+
+                                                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Create a Redis service instance. For example:</span><div class="itemgroup info">
+                                                            <pre class="pre codeblock">cf create-service redis-1 shared-vm &lt;redis_instanceId&gt;</pre>
+
+                                                            <p class="p">See the Key-Value store (Redis) tile in the Predix Catalog on <samp class="ph codeph">http://predix.io</samp> for more information.</p>
+
+                                                </div><div class="itemgroup stepresult">Record the Redis service <samp class="ph codeph">instanceId</samp> defined in this step.</div></li>
+<li class="li step stepexpand"><span class="ph cmd">Verify the bindings.</span><div class="itemgroup info">
+                                                            <pre class="pre codeblock">cf env Predix-HelloWorld-WebApp-&lt;YourAppName&gt;</pre>
+
+                                                </div></li>
+</ol>
+<div class="section postreq">See <a class="xref" href="t_creating_an_oauth2_client_to_access_dashboard_seed.html#task_llh_sz5_jv">Creating an OAuth2 Client to Access the Dashboard Seed</a>.</div>
+</div>
+<div class="navfooter"><!----></div><div class="footer">WebHelp output generated by<a class="oxyFooter" href="http://www.oxygenxml.com" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/LogoOxygen100x22.png" alt="Oxygen"></img></span><span class="xmlauthor">XML Author</span></a></div>
+</body>
+</html>

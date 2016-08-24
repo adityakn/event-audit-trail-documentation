@@ -1,0 +1,70 @@
+
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+<head><meta name="description" content="You need the pathname of the predix-seed directory (see Installing the Dashboard Seed ). You need the View service instanceId that you recorded in Setting Up Required Services for Polymer Seed ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Updating the NGINX Configuration"></meta><meta name="DC.Creator" content="Joseph Aseo"></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_581dc9e5-5ee2-4d80-8168-4065595b16cd"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Updating the NGINX Configuration</title><!--  Generated with Oxygen version 17.1, build number 2016032212.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery.highlight-3.js"><!----></script><script type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" class="frmBody" id="task_581dc9e5-5ee2-4d80-8168-4065595b16cd">
+<table class="nav"><tbody><tr><td colspan="2"><div id="printlink"><a href="javascript:window.print();" title="Print this page"></a></div><div id="permalink"><a href="#" title="Link to this page"></a></div></td></tr><tr><td width="75%"></td><td><div class="navheader"></div></td></tr></tbody></table>
+<h1 class="title topictitle1">Updating the NGINX Configuration</h1>
+<div class="body taskbody"><div class="section prereq p">
+            <p class="p">You need the pathname of the <samp class="ph codeph">predix-seed</samp> directory (see <a class="xref" href="t_installing_dashboard_seed.html#task_skl_4cp_c5">Installing the Dashboard Seed</a>). </p>
+
+            <p class="p">You need the View service <samp class="ph codeph">instanceId</samp> that you recorded in <a class="xref" href="t_setting_up_services_required_for_polymer_seed_authentication.html#task_e728c3be-2bee-4bed-ba60-0f959fa0a865">Setting Up Required Services for Polymer Seed Authentication</a>.</p>
+
+            <p class="p">You need the <samp class="ph codeph">oauth2_clientId</samp> and <samp class="ph codeph">Base64ClientCreddential</samp> that you recorded in <a class="xref" href="t_creating_an_oauth2_client_to_access_dashboard_seed.html#task_llh_sz5_jv">Creating an OAuth2 Client to Access the Dashboard Seed</a>.</p>
+
+        </div>
+<div class="section context">
+            <div class="p">You need to update the following values in the <samp class="ph codeph">nginx.conf</samp> file before you can push the Dashboard Seed to Cloud Foundry:<ul class="ul" id="task_581dc9e5-5ee2-4d80-8168-4065595b16cd__ul_nd5_pdq_mv"><li class="li"><samp class="ph codeph">your_view_service_instance</samp></li>
+<li class="li"><samp class="ph codeph">$session_secret</samp>
+                    </li>
+<li class="li"><samp class="ph codeph">$client_id</samp></li>
+<li class="li"><samp class="ph codeph">$uaa_authorization_header</samp></li>
+</ul>
+</div>
+
+        </div>
+<ol class="ol steps" id="task_581dc9e5-5ee2-4d80-8168-4065595b16cd__steps_99a540c6-c7ea-4391-b729-403329751472"><li class="li step stepexpand"><span class="ph cmd">Change to the <samp class="ph codeph">predix-seed/dist/</samp> directory.</span><div class="itemgroup info">
+                    <pre class="pre codeblock">cd predix-seed/dist/</pre>
+
+                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Edit the <samp class="ph codeph">nginx.conf</samp> file to change each <samp class="ph codeph">predix_seed_view_service</samp> reference to the View service instance name. </span><div class="itemgroup info">
+                    <pre class="pre codeblock"># from 
+proxy_set_header    predix-zone-id   "&lt;%= ENV["vcap_service_predix_seed_view_service_instanceId"] %&gt;";
+proxy_pass  "&lt;%= ENV["vcap_service_predix_seed_view_service_uri"] %&gt;";
+
+# to (assuming you changed your_view_service_instance to my_special_views_service in your manifest.yml)
+proxy_set_header    predix-zone-id   "&lt;%= ENV["vcap_service_my_special_views_service_instanceId"] %&gt;";
+proxy_pass  "&lt;%= ENV["vcap_service_my_special_views_service_uri"] %&gt;";</pre>
+
+                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Use a random number generator such as the <samp class="ph codeph">rand</samp> method to create a unique <samp class="ph codeph">my_session_secret</samp>. </span><div class="itemgroup info">
+                    <div class="p">For example:<pre class="pre codeblock">openssl rand -base64 32</pre>
+</div>
+
+                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Update <samp class="ph codeph">$session_secret</samp> with the new <samp class="ph codeph">my_session_secret</samp>:</span><div class="itemgroup info">
+                    <pre class="pre codeblock">set $session_secret "&lt;my-session-secret&gt;";</pre>
+
+                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Update <samp class="ph codeph">$client_id</samp> with the <samp class="ph codeph">oauth2_clientId</samp> you just recorded (see <a class="xref" href="t_creating_an_oauth2_client_to_access_dashboard_seed.html#task_llh_sz5_jv">Creating an OAuth2 Client to Access the Dashboard Seed</a>):</span><div class="itemgroup info">
+                    <pre class="pre codeblock">set $client_id "&lt;oauth2_clientId&gt;";</pre>
+
+                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Update <samp class="ph codeph">$uaa_authorization_header</samp> with the <samp class="ph codeph">Base64ClientCreddential</samp> you just recorded (see <a class="xref" href="t_creating_an_oauth2_client_to_access_dashboard_seed.html#task_llh_sz5_jv">Creating an OAuth2 Client to Access the Dashboard Seed</a>):</span><div class="itemgroup info">
+                    <pre class="pre codeblock">set $uaa_authorization_header "Basic &lt;Base64ClientCreddential&gt;";</pre>
+
+                </div></li>
+</ol>
+<div class="section postreq">
+            <p class="p">See <a class="xref" href="t_pushing_dashboard_seed_to_cloud_foundry.html#task_h2c_41w_jv">Pushing the Dashboard Seed to Cloud Foundry</a> to push the Dashboard Seed to Cloud Foundry.</p>
+
+        </div>
+</div>
+<div class="navfooter"><!----></div><div class="footer">WebHelp output generated by<a class="oxyFooter" href="http://www.oxygenxml.com" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/LogoOxygen100x22.png" alt="Oxygen"></img></span><span class="xmlauthor">XML Author</span></a></div>
+</body>
+</html>

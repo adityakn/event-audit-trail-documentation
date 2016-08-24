@@ -1,0 +1,101 @@
+
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+<head><meta name="description" content="You need a Predix platform user name &lt;your_predix_login&gt; . and password &lt;your_predix_password&gt; . See Registering for a Predix Platform User Account Set up required services to install the Dashboard ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Installing the Dashboard Seed"></meta><meta name="DC.Creator" content="Joseph Aseo"></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_skl_4cp_c5"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Installing the Dashboard Seed</title><!--  Generated with Oxygen version 17.1, build number 2016032212.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery.highlight-3.js"><!----></script><script type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" class="frmBody" id="task_skl_4cp_c5">
+<table class="nav"><tbody><tr><td colspan="2"><div id="printlink"><a href="javascript:window.print();" title="Print this page"></a></div><div id="permalink"><a href="#" title="Link to this page"></a></div></td></tr><tr><td width="75%"></td><td><div class="navheader"></div></td></tr></tbody></table>
+<h1 class="title topictitle1">Installing the Dashboard Seed</h1>
+<div class="body taskbody"><div class="section prereq p">
+            <p class="p">You need a Predix platform user name <samp class="ph codeph">&lt;your_predix_login&gt;</samp>. and password <samp class="ph codeph">&lt;your_predix_password&gt;</samp>. See <a class="xref" href="t_registering_for_a_user_account_on_predixio.html#task_a0b9d32e-24ff-4c84-a210-713527bce17c">Registering for a Predix Platform User Account</a></p>
+
+            <p class="p">Set up required services to install the Dashboard Seed (see <a class="xref" href="t_setting_up_required_services_for_the_dashboard_seed.html#task_ick_l3c_t5">Setting Up Required Services to Install the Dashboard Seed</a>).</p>
+
+        </div>
+<div class="section context">
+            <div class="p">This procedure uses the following developer tools to install the Dashboard Seed:<ul class="ul" id="task_skl_4cp_c5__ul_yhv_htq_y5"><li class="li">Node.js <samp class="ph codeph">npm</samp> package-management utility. See <a class="xref" href="https://www.npmjs.com/" target="_blank">https://www.npmjs.com/</a> for more information.</li>
+<li class="li"><samp class="ph codeph">grunt</samp> command-line interface for <samp class="ph codeph">npm</samp>. See <a class="xref" href="https://www.npmjs.com/package/grunt-cli" target="_blank">https://www.npmjs.com/package/grunt-cli</a> for more information.</li>
+<li class="li"><samp class="ph codeph">grunt serve</samp> plugin, used to start a web server that runs tasks and serves files. This web server can be accessed by loading the <samp class="ph codeph">http://localhost:9000/</samp> page . See <a class="xref" href="https://www.npmjs.com/package/grunt-serve" target="_blank">https://www.npmjs.com/package/grunt-serve</a> for more information.</li>
+<li class="li"><samp class="ph codeph">bower</samp> package manager for <samp class="ph codeph">npm</samp>. See <a class="xref" href="https://www.npmjs.com/package/bower" target="_blank">https://www.npmjs.com/package/bower</a> for more information.</li>
+</ul>
+</div>
+
+        </div>
+<ol class="ol steps" id="task_skl_4cp_c5__steps_800852aa-57b8-4023-93ae-16d05c8e787c"><li class="li step stepexpand"><span class="ph cmd">Use the Cloud Foundry CLI to log into Cloud Foundry. </span><div class="itemgroup info">
+                    <pre class="pre codeblock">cf login -a &lt;API_Endpoint&gt;</pre>
+
+                    <p class="p">The <samp class="ph codeph">&lt;API_Endpoint&gt;</samp> value is included  in the Predix invitation email that you receive when you register for an Predix.io user platform account. Depending on your Predix.io registration, the <samp class="ph codeph">&lt;API_Endpoint&gt;</samp> uses one of the following values:</p>
+
+                    <ul class="ul" id="task_skl_4cp_c5__ul_a92b357c-adfd-45a4-aa8b-90b60b7ca848"><li class="li"><p class="p">Predix Basic</p>
+
+                            <samp class="ph codeph">https://api.system.aws-usw02-pr.ice.predix.io</samp></li>
+<li class="li"><p class="p">Predix Select</p>
+
+                            <samp class="ph codeph">https://api.system.asv-pr.ice.predix.io</samp></li>
+</ul>
+
+                    <p class="p">For example,</p>
+
+                    <pre class="pre codeblock">cf login -a https://api.system.aws-usw02-pr.ice.predix.io</pre>
+
+                </div><div class="itemgroup stepresult"> The command generates the following output: <pre class="pre codeblock">Email&gt; &lt;your_predix_login&gt; 
+Password&gt; &lt;your_predix_password&gt; 
+Authenticating...OK 
+Targeted org &lt;your_predix_org&gt; 
+Targeted space dev     
+API endpoint: https://api.system.aws-usw02-pr.ice.predix.io (API version: 2.28.0)   
+User: &lt;your_predix_login&gt; 
+Org:  &lt;your_predix_org&gt;  
+Space: dev</pre>
+</div></li>
+<li class="li step stepexpand"><span class="ph cmd">Clone your copy of the Dashboard Seed and start a Dashboard Seed project. </span><div class="itemgroup info">
+                    <pre class="pre codeblock">git clone https://github.com/PredixDev/predix-seed</pre>
+
+                    <p class="p">The command generates the following output: </p>
+
+                    <pre class="pre codeblock">Cloning into 'predix-seed'...
+remote: Counting objects: 13523, done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 13523 (delta 6), reused 0 (delta 0), pack-reused 13508
+Receiving objects: 100% (13523/13523), 46.62 MiB | 2.52 MiB/s, done.
+Resolving deltas: 100% (5256/5256), done.
+Checking connectivity... done.</pre>
+
+                    <p class="p">The command also creates a <samp class="ph codeph">predix-seed</samp> directory which holds all of the Dashboard Seed project files.</p>
+
+                </div><div class="itemgroup stepresult">
+                    <p class="p">Record the pathname of the <samp class="ph codeph">predix-seed</samp>  directory for later use. </p>
+
+                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Change to the <samp class="ph codeph">predix-seed</samp> project directory:</span><div class="itemgroup info">
+                    <pre class="pre codeblock">cd predix-seed</pre>
+
+                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Install the Dashboard Seed dependencies for these utilities: </span><div class="itemgroup info">
+                    <pre class="pre codeblock">npm install
+bower install</pre>
+
+                </div><div class="itemgroup stepresult">
+                    <p class="p">The <samp class="ph codeph">package.json</samp> file lists the buildtime dependencies.  The <samp class="ph codeph">bower.json</samp> file lists the runtime dependencies.</p>
+
+                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Verify that the Dashboard Seed project files have been successfully installed:</span><div class="itemgroup info">
+                    <pre class="pre codeblock">grunt serve</pre>
+
+                </div><div class="itemgroup stepresult">
+                    <p class="p">A login dialog displays in a web browser.</p>
+
+                </div></li>
+</ol>
+<div class="section postreq">
+            <p class="p">See <a class="xref" href="t_deploying_dashboard_seed_to_cloud_foundry.html#task_pv2_xnv_c5">Deploying the Dashboard Seed to Cloud Foundry</a> to modify the Dashboard Seed for deployment as a basic web application.</p>
+
+        </div>
+</div>
+<div class="navfooter"><!----></div><div class="footer">WebHelp output generated by<a class="oxyFooter" href="http://www.oxygenxml.com" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/LogoOxygen100x22.png" alt="Oxygen"></img></span><span class="xmlauthor">XML Author</span></a></div>
+</body>
+</html>

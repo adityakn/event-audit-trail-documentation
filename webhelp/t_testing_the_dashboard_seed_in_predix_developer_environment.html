@@ -1,0 +1,85 @@
+
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xml:lang="en-us" lang="en-us">
+<head><meta name="description" content="You need the following information to test the Dashboard Seed in the Predix developer environment You need the pathname of the predix-seed directory where the Dashboard Seed project files are located ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Testing the Dashboard Seed in the Predix Developer Environment"></meta><meta name="DC.Creator" content="Joseph Aseo"></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_mmr_j5v_jv"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Testing the Dashboard Seed in the Predix Developer Environment</title><!--  Generated with Oxygen version 17.1, build number 2016032212.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
+          
+          var prefix = "index.html";
+          
+          --></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script type="text/javascript" src="oxygen-webhelp/resources/js/jquery.highlight-3.js"><!----></script><script type="text/javascript" charset="utf-8" src="oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" class="frmBody" id="task_mmr_j5v_jv">
+<table class="nav"><tbody><tr><td colspan="2"><div id="printlink"><a href="javascript:window.print();" title="Print this page"></a></div><div id="permalink"><a href="#" title="Link to this page"></a></div></td></tr><tr><td width="75%"></td><td><div class="navheader"></div></td></tr></tbody></table>
+<h1 class="title topictitle1">Testing the Dashboard Seed in the Predix Developer Environment</h1>
+<div class="body taskbody"><div class="section prereq p">
+            <p class="p">You need the following information to test the Dashboard Seed in the Predix developer environment</p>
+
+            <p class="p">You need the pathname of the <samp class="ph codeph">predix-seed</samp> directory where the Dashboard Seed project files are located (see <a class="xref" href="t_installing_dashboard_seed.html#task_skl_4cp_c5">Installing the Dashboard Seed</a>). </p>
+
+            <ul class="ul" id="task_mmr_j5v_jv__ul_zq1_22p_15"><li class="li">Pathname of the <samp class="ph codeph">predix-seed</samp> directory where the Dashboard Seed project files are located (see <a class="xref" href="t_installing_dashboard_seed.html#task_skl_4cp_c5">Installing the Dashboard Seed</a>). </li>
+<li class="li">UAA instance <samp class="ph codeph">uri</samp> that you recorded in <a class="xref" href="t_set_up_required_services_to_deploy_dashboard_seed.html#task_mkc_14c_mw">Setting Up Required Services to Deploy the Dashboard Seed</a>.</li>
+<li class="li">View service <samp class="ph codeph">instanceId</samp> and <samp class="ph codeph">uri</samp> that you recorded in <a class="xref" href="t_set_up_required_services_to_deploy_dashboard_seed.html#task_mkc_14c_mw">Setting Up Required Services to Deploy the Dashboard Seed</a>.</li>
+<li class="li">
+                    <p class="p">OAuth2 client name <samp class="ph codeph">oauth2_client_name</samp> and <samp class="ph codeph"><a class="xref" href="t_set_up_required_services_to_deploy_dashboard_seed.html#task_mkc_14c_mw">base64ClientCredential</a></samp> that you recorded in <a class="xref" href="t_update_oauth2_client_for_polymer_seed.html#task_sgh_ygc_mw">Updating the OAuth2 Client for the Polymer Seed</a>.</p>
+
+                </li>
+<li class="li">The user name and password of <samp class="ph codeph">my-user</samp> that you added in <a class="xref" href="t_update_oauth2_client_for_polymer_seed.html#task_sgh_ygc_mw">Updating the OAuth2 Client for the Polymer Seed</a>.</li>
+</ul>
+
+        </div>
+<div class="section context">
+            <p class="p">This procedure tests the Dashboard Seed in the Predix developer environment with the <samp class="ph codeph">grunt serve</samp> plugin that starts a web server to run tasks and serve files. This web server can be accessed by loading the page <samp class="ph codeph">http://localhost:9000/</samp>. See <a class="xref" href="https://www.npmjs.com/package/grunt-serve" target="_blank">https://www.npmjs.com/package/grunt-serve</a> for more information.</p>
+
+            <p class="p">You need to record the authorization <samp class="ph codeph">token</samp> for use when deploying the Dashboard Seed to Cloud Foundry:</p>
+
+        </div>
+<ol class="ol steps" id="task_mmr_j5v_jv__steps_eae645c1-0caf-4059-a592-bada02f89be3"><li class="li step stepexpand"><span class="ph cmd">Change to the <samp class="ph codeph">predix-seed/tasks/options/</samp> directory.</span><div class="itemgroup info">
+                    <pre class="pre codeblock">cd predix-seed/tasks/options/</pre>
+
+                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Modify the following objects in the <span class="ph filepath">connect.js</span> file: </span><ol type="a" class="ol substeps" id="task_mmr_j5v_jv__substeps_6b3466e9-621f-4d20-9570-86a68cba88bc"><li class="li substep substepexpand"><span class="ph cmd">Update the <samp class="ph codeph">uaa</samp> object:</span><div class="itemgroup info">
+                            <pre class="pre codeblock">uaa: {
+    clientId: '&lt;your-client&gt;', 
+    serverUrl: '&lt;your-server-url&gt;', 
+    defaultClientRoute: '/about',
+    base64ClientCredential: '&lt;your-client-credential&gt;'
+},</pre>
+
+                            <div class="p">where:<ul class="ul" id="task_mmr_j5v_jv__ul_0a721658-bd9c-4df5-8eb8-18d0e87d6a5c"><li class="li"><samp class="ph codeph">&lt;your-client&gt;</samp>: <samp class="ph codeph">oauth2_clientID</samp></li>
+<li class="li"><samp class="ph codeph">&lt;your-server-url&gt;</samp>: UAA instance <samp class="ph codeph">uri</samp>
+                                    </li>
+<li class="li"><samp class="ph codeph">&lt;your-client-credential&gt;</samp>: <samp class="ph codeph">base64ClientCredential</samp></li>
+</ul>
+</div>
+
+                        </div></li>
+<li class="li substep substepexpand"><span class="ph cmd">Update the <samp class="ph codeph">view-service</samp> proxy object:</span><div class="itemgroup info">
+                            <pre class="pre codeblock">proxy: {
+'/api/view-service(.*)': {
+  url: '&lt;your-view-service-url&gt;/v1$1',
+  instanceId: '&lt;your-view-service-instanceID&gt;'
+}</pre>
+
+                            <div class="p">where:<ul class="ul" id="task_mmr_j5v_jv__ul_e94fc8ec-18f0-4388-b477-e9a508ec6d08"><li class="li">
+                                        <samp class="ph codeph">url</samp>: the URL for your View service <samp class="ph codeph">uri</samp> appended with <samp class="ph codeph"><span class="q">"/v1$1"</span></samp> (for example: <samp class="ph codeph">http://my-view-service.predix.io/v1$1</samp>).</li>
+<li class="li"><samp class="ph codeph">instanceId</samp>: your View service <samp class="ph codeph">instanceID</samp>. </li>
+</ul>
+</div>
+
+                        </div></li>
+</ol>
+</li>
+<li class="li step stepexpand"><span class="ph cmd">Run the Dashboard Seed in the Predix developer environment:</span><div class="itemgroup info">
+                    <pre class="pre codeblock">grunt serve</pre>
+
+                </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Log into the Dashboard Seed with the <samp class="ph codeph">my-user</samp> user name and password that you added in <a class="xref" href="t_creating_an_oauth2_client_to_access_dashboard_seed.html#task_llh_sz5_jv">Creating an OAuth2 Client to Access the Dashboard Seed</a>.</span><div class="itemgroup stepresult">
+                    <div class="p">Record the authorization <samp class="ph codeph">token</samp> displayed in the terminal after you run the <samp class="ph systemoutput">grunt</samp> command and log into the Dashboard Seed. For example:<pre class="pre codeblock">authorization:'&lt;token&gt;'</pre>
+</div>
+
+                </div></li>
+</ol>
+<div class="section postreq"><a class="xref" href="t_adding_sample_data_to_view_service_instance.html#task_a20705df-dc76-410c-bb8c-050aa8a00d9c">Adding Sample Data to the View Service Instance</a></div>
+</div>
+<div class="navfooter"><!----></div><div class="footer">WebHelp output generated by<a class="oxyFooter" href="http://www.oxygenxml.com" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/LogoOxygen100x22.png" alt="Oxygen"></img></span><span class="xmlauthor">XML Author</span></a></div>
+</body>
+</html>
