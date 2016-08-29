@@ -2,7 +2,7 @@
 <!DOCTYPE html
   SYSTEM "about:legacy-compat">
 <html xml:lang="en-us" lang="en-us">
-<head><meta name="description" content="Procedure to create users locally in UAA for authentication. Log in to predix.io. The authentication flow for authorization grant type such as Authorization Code, Implicit, and Resource Owner Password ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Creating Users in a UAA Instance"></meta><meta name="abstract" content="Procedure to create users locally in UAA for authentication."></meta><meta name="description" content="Procedure to create users locally in UAA for authentication."></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_lrr_n5w_fs"></meta><meta name="DC.Language" content="en-US"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Creating Users in a UAA Instance</title><!--  Generated with Oxygen version 17.1, build number 2016032212.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
+<head><meta name="description" content="Procedure to create users locally in UAA for authentication. Log in to predix.io. The authentication flow for authorization grant type such as Authorization Code, Implicit, and Resource Owner Password ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Creating Users in a UAA Instance"></meta><meta name="abstract" content="Procedure to create users locally in UAA for authentication."></meta><meta name="description" content="Procedure to create users locally in UAA for authentication."></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_lrr_n5w_fs"></meta><meta name="DC.Language" content="en-US"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Creating Users in a UAA Instance</title><!--  Generated with Oxygen version 17.1, build number 2016020417.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
           
           var prefix = "index.html";
           
@@ -19,6 +19,9 @@
 <div class="section context">
             <p class="p">The authentication flow for authorization grant type such as Authorization Code, Implicit, and Resource Owner Password involves users that provide their username and password credentials to an application. The application uses UAA to authenticate the users using these credentials. For UAA to authenticate the users, the users must first be created in UAA. You can either create users locally within UAA or federate to an external identity provider. </p>
 
+            <div class="p">When you create a UAA instance, an admin client is automatically created for you to be able to configure your UAA instance. The admin client is assigned all the required authorities and scopes by default.<div class="note note"><span class="notetitle">Note:</span> The admin client is not assigned the authority to be able to change the user password by default. If you need the ability to update or change the user password, you must add the <samp class="ph codeph">uaa.admin</samp> authority to your admin client. For more information, see <a class="xref" href="t_updating_the_oauth2_client.html#task_k3h_k2c_1x" title="Procedure for updating the OAuth2 client to add additional authorities or scopes that are specific to each platform service.">Updating the OAuth2 Client</a>.</div>
+</div>
+
             <p class="p">Use the following procedure to create users locally in UAA.</p>
 
         </div>
@@ -29,27 +32,27 @@
 <li class="li step stepexpand"><span class="ph cmd">Click on the <span class="ph uicontrol">Add User</span> button to open the <span class="ph uicontrol">New User</span> form.</span></li>
 <li class="li step stepexpand"><span class="ph cmd">Specify the following values in the <span class="ph uicontrol">New User</span> form:</span><div class="itemgroup info">
                     
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="task_lrr_n5w_fs__table_ehl_3rb_1x" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row"><th class="entry" valign="top" width="27.70083102493075%" id="d25066e78">Field</th>
-<th class="entry" valign="top" width="72.29916897506925%" id="d25066e80">Description</th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="task_lrr_n5w_fs__table_ehl_3rb_1x" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row"><th class="entry" valign="top" width="27.70083102493075%" id="d25674e93">Field</th>
+<th class="entry" valign="top" width="72.29916897506925%" id="d25674e95">Description</th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25066e78 "><span class="ph uicontrol">User Name</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d25066e80 ">Specify the user name.</td>
+<tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25674e93 "><span class="ph uicontrol">User Name</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d25674e95 ">Specify the user name.</td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25066e78 "><span class="ph uicontrol">Email</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d25066e80 ">Specify the email address.</td>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25674e93 "><span class="ph uicontrol">Email</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d25674e95 ">Specify the email address.</td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25066e78 "><span class="ph uicontrol">Password</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d25066e80 ">Specify the password.</td>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25674e93 "><span class="ph uicontrol">Password</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d25674e95 ">Specify the password.</td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25066e78 "><span class="ph uicontrol">Given Name</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d25066e80 ">Specify the first name of the user.</td>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25674e93 "><span class="ph uicontrol">Given Name</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d25674e95 ">Specify the first name of the user.</td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25066e78 "><span class="ph uicontrol">Family Name</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d25066e80 ">Specify the last name of the user.</td>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25674e93 "><span class="ph uicontrol">Family Name</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d25674e95 ">Specify the last name of the user.</td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25066e78 "><span class="ph uicontrol">Groups</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d25066e80 ">Select the groups to associate the user with.</td>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d25674e93 "><span class="ph uicontrol">Groups</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d25674e95 ">Select the groups to associate the user with.</td>
 </tr>
 </tbody>
 </table>
@@ -100,6 +103,6 @@ uaac token decode</pre>
 </ol>
 </div>
 </div>
-<div class="navfooter"><!----></div><div class="footer">WebHelp output generated by<a class="oxyFooter" href="http://www.oxygenxml.com" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/LogoOxygen100x22.png" alt="Oxygen"></img></span><span class="xmlauthor">XML Author</span></a></div>
+<div class="navfooter"><!----></div><div class="footer"><a class="oxyFooter" href="" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/GELogo1.jpg" height="36px" alt="General Electric"></img></span><span class="xmlauthor"> © 2015-2016 General Electric Company. All rights reserved.</span></a></div>
 </body>
 </html>

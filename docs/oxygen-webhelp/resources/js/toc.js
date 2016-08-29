@@ -452,14 +452,6 @@ function loadIndexterms() {
         scriptTag.type = "text/javascript";
         scriptTag.src = "oxygen-webhelp/indexterms.js";
         document.head.appendChild(scriptTag);
-        
-        var loaded = setInterval(function(){
-            if ( trim($("#indexBlock #iList").html()) != '' ) {
-                // append footer
-                $("#indexBlock #iList").append($("#leftPane .footer"));
-                clearInterval(loaded);
-            }
-        }, 10);
     } catch (e) {
         if ( $("#indexList").length < 1 ) {
             $("#index").html('<span id="loadingError">Index loading error: ' + e + '</span>');
@@ -538,8 +530,6 @@ function showMenu(displayTab) {
         }
         if ( !withFrames ) {
             loadIndexterms();
-        } else {
-        	$("#iList").append($("#leftPane .footer"));
         }
         
         $('#id_search').focus();
@@ -548,6 +538,7 @@ function showMenu(displayTab) {
         $("#bck_toc,#bck_toc #searchBlock").css("height", "100%");
         var hAvailable = parseInt($("body").height())-parseInt($("#header").height())-parseInt($("#indexForm").height())-parseInt($("#indexForm").css("padding-top"))-parseInt($("#indexForm").css("padding-bottom"))-parseInt($("#bck_toc").css("padding-top"));
         $("#iList").css("height", hAvailable);
+        $("#iList").append($("#leftPane .footer"));
     }
 }
 /**

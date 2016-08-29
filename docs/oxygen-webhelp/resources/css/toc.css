@@ -6,7 +6,17 @@ Licensed under the terms stated in the license file EULA_Webhelp.txt
 available in the base directory of this Oxygen Webhelp plugin.
 
 */
-
+/* mspell 2015-11-19 added lines 10-19 to import GE font and suppress Index tab */
+@font-face{
+	font-family:"GE Inspira";
+	src:url(fonts/GEInspiraSans-Regular-v01.otf);
+}
+body{
+	font-family:"GE Inspira", "ge-inspira", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#index{
+	display:none
+}
 /* Start RTL */
 html[dir="rtl"] .topic, html[dir="rtl"] .hasSubMenuOpened, html[dir="rtl"] .hasSubMenuClosed{
     background-position: right;

@@ -119,6 +119,11 @@ table.nav td + td {
   text-align:left;
   padding:0 0.4em 0 0;
 }
+/* mspell added for choicetable 040416 */
+table.choicetable {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
 
 /*
  * Patch EXM-23770
@@ -138,7 +143,8 @@ table.nav td + td {
  */
 h1.topictitle1 {
   color:black;
-  background-color:#C0C0C0;
+  /* mspell 06-24-16 commented out background-color */
+/*  background-color:#C0C0C0; */
   font-size: 20px;  
   padding:0.4em 0 0.3em 0.7em;
   margin:0;
@@ -444,8 +450,47 @@ pre {
   max-height: 600px;
   margin: 0.5em;
 } 
+/* 
+* mspell 03_16_16 added this section to style headings for context, prereq, and result
+* mspell 06_23_16 added postreq to this section
+*/
+div.prereq:before {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-style: italic ;
+  font-weight: bold ;
+  font-size: 14px ;
+  display: block;
+  content: "Before You Begin";
+}
 
-
+div.context:before {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-style: italic ;
+  font-weight: bold ;
+  font-size: 14px ;
+  display: block;
+  content: "About This Task";
+}
+div.result:before {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-style: italic ;
+  font-weight: bold ;
+  font-size: 14px ;
+  display: block;
+  content: "Result";
+}
+div.postreq:before {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-style: italic ;
+  font-weight: bold ;
+  font-size: 14px ;
+  display: block;
+  content: "Next Steps";
+}
 /*  OXYGEN PATCH  EXM-31508  - window titles and UI controls should be bold. */
 .uicontrol, .wintitle { font-weight: bold; }
 
@@ -462,7 +507,9 @@ div.fignone p.figcap {
   text-align:left;
   font-weight:bold;
   padding:2px 10px 5px 10px;
-}
+} 
+
+
 
 div.fignone p.figcapcenter {
   display:block;
@@ -489,6 +536,14 @@ div.fignone img {
   padding-top: 5px;
   padding-left: 10px;
   padding-right: 10px;
+}
+/* mspell added 050416 */
+div.fignone span.figcap {
+  display:block;
+  text-align:left;
+  font-size: 16px ;
+  font-weight:bold;
+  padding:2px 10px 5px 10px;
 }
 /* OXYGEN PATCH END EXM-17248 */
 

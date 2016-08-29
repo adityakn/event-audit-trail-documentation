@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map>
+   <appContext helpID="reference_70580ac5-0f4c-4c89-b192-107b63c08927"
+               path="r_event_audit_trail_service_disclaimer.html"/>
    <appContext helpID="concept_73f598d1-bf45-409d-b192-3f5fff9b7727"
                path="c_about_the_event_audit_trail_service.html"/>
    <appContext helpID="reference_113a6858-869c-4a80-9209-404024ffc09c"

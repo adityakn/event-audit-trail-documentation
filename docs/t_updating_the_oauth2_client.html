@@ -2,7 +2,7 @@
 <!DOCTYPE html
   SYSTEM "about:legacy-compat">
 <html xml:lang="en-us" lang="en-us">
-<head><meta name="description" content="Procedure for updating the OAuth2 client to add additional authorities or scopes that are specific to each platform service. To enable your application to access a platform service, your JSON Web ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Updating the OAuth2 Client"></meta><meta name="abstract" content="Procedure for updating the OAuth2 client to add additional authorities or scopes that are specific to each platform service."></meta><meta name="description" content="Procedure for updating the OAuth2 client to add additional authorities or scopes that are specific to each platform service."></meta><meta name="DC.Relation" scheme="URI" content="t_creating_an_oauth_client.html"></meta><meta name="DC.Creator" content="Your Name Here"></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_k3h_k2c_1x"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Updating the OAuth2 Client</title><!--  Generated with Oxygen version 17.1, build number 2016032212.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
+<head><meta name="description" content="Procedure for updating the OAuth2 client to add additional authorities or scopes that are specific to each platform service. To enable your application to access a platform service, your JSON Web ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Updating the OAuth2 Client"></meta><meta name="abstract" content="Procedure for updating the OAuth2 client to add additional authorities or scopes that are specific to each platform service."></meta><meta name="description" content="Procedure for updating the OAuth2 client to add additional authorities or scopes that are specific to each platform service."></meta><meta name="DC.Relation" scheme="URI" content="t_creating_an_oauth_client.html"></meta><meta name="DC.Creator" content="Your Name Here"></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_k3h_k2c_1x"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Updating the OAuth2 Client</title><!--  Generated with Oxygen version 17.1, build number 2016020417.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
           
           var prefix = "index.html";
           
@@ -17,7 +17,11 @@
 
             <p class="p">The OAuth2 client uses an authorization grant to request an access token. OAuth2 defines four grant types. Based on the type of authorization grant that you have used, you must update your OAuth2 client to generate the required JWT. For more information on how the OAuth2 client is created, see <a class="xref" href="t_creating_an_oauth_client.html#task_79a81b74-552e-4f74-abfc-bd37e6adac87" title="Procedure for creating additional OAuth2 client to access a UAA instance.">Creating OAuth2 client</a>. </p>
 
-            <p class="p">If you use the UAA Dashboard to create a client, by default the client is created for <samp class="ph codeph">client_credentials</samp> grant type. Additionally some of the required authorities and scopes are automatically added to the client. You must add additional authorities or scopes that are specific to each service.</p>
+            <p class="p">When you create a UAA instance, an admin client is automatically created for you to be able to configure your UAA instance. The admin client is assigned the required authorities and scopes by default.</p>
+
+            <p class="p">If you use the UAA Dashboard to create additional clients, by default the client is created for <samp class="ph codeph">client_credentials</samp> grant type. Additionally some of the required authorities and scopes are automatically added to the client. You must add additional authorities or scopes that are specific to each service.</p>
+
+            <p class="p">In addition, the admin client is not assigned the authority to be able to change the user password by default. If you need the ability to update or change the user password, you must add the <samp class="ph codeph">uaa.admin</samp> authority to your admin client. </p>
 
             <p class="p">The following procedure shows the steps required to update the OAuth2 client that uses the client credentials authorization grant.</p>
 
@@ -32,12 +36,12 @@
 <li class="li step stepexpand"><span class="ph cmd">In the <span class="ph uicontrol">Client Management</span> tab, click on the edit icon corresponding to the client that you added in the previous step.</span></li>
 <li class="li step stepexpand"><span class="ph cmd">Specify the following values in the <span class="ph uicontrol">Edit Client</span> form:</span><div class="itemgroup info">
                     
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="task_k3h_k2c_1x__table_ehl_3rb_1x" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row"><th class="entry" valign="top" width="27.70083102493075%" id="d32214e119">Field</th>
-<th class="entry" valign="top" width="72.29916897506925%" id="d32214e121">Description</th>
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="task_k3h_k2c_1x__table_ehl_3rb_1x" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row"><th class="entry" valign="top" width="27.70083102493075%" id="d32974e129">Field</th>
+<th class="entry" valign="top" width="72.29916897506925%" id="d32974e131">Description</th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32214e119 "><span class="ph uicontrol">Authorized Grant Types</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d32214e121 ">Choose one or more of the following grant type(s):<ul class="ul" id="task_k3h_k2c_1x__ul_pyf_jnq_rw"><li class="li"><span class="ph uicontrol">client_credentials</span><p class="p">When you use the client credentials grant type, the OAuth2 endpoint in UAA accepts the client id and client secret and provides Access Tokens. The client is created with <samp class="ph codeph">client_credentials</samp> grant by default.</p>
+<tbody class="tbody"><tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32974e129 "><span class="ph uicontrol">Authorized Grant Types</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d32974e131 ">Choose one or more of the following grant type(s):<ul class="ul" id="task_k3h_k2c_1x__ul_pyf_jnq_rw"><li class="li"><span class="ph uicontrol">client_credentials</span><p class="p">When you use the client credentials grant type, the OAuth2 endpoint in UAA accepts the client id and client secret and provides Access Tokens. The client is created with <samp class="ph codeph">client_credentials</samp> grant by default.</p>
 </li>
 <li class="li"><span class="ph uicontrol">implicit</span><p class="p">When you use the implicit grant type, UAA directly issues an Access Token to the client without authenticating the client. This reduces the number of round trips required to obtain an access token. </p>
 </li>
@@ -50,31 +54,31 @@
 <p class="p">For more information on various grant types, see <a class="xref" href="https://tools.ietf.org/html/rfc6749" target="_blank">RFC 6749</a>.</p>
 </td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32214e119 "><span class="ph uicontrol">Scopes</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d32214e121 ">By default, the client is assigned a few required scopes. For a new client, an administrator can choose the scopes to be added based on the selected grant type.<p class="p">If you choose the <samp class="ph codeph">authorization_code</samp>, <samp class="ph codeph">password</samp> and <samp class="ph codeph">implicit</samp> grant type, you must update the scopes with service specific scopes.</p>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32974e129 "><span class="ph uicontrol">Scopes</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d32974e131 ">By default, the client is assigned a few required scopes. For a new client, an administrator can choose the scopes to be added based on the selected grant type.<p class="p">If you choose the <samp class="ph codeph">authorization_code</samp>, <samp class="ph codeph">password</samp> and <samp class="ph codeph">implicit</samp> grant type, you must update the scopes with service specific scopes.</p>
 <p class="p">For a complete list of scopes to be added for each service, see <a class="xref" href="r_authorities_or_scopes_required_for_services.html#reference_ec1_t3d_bx">Authorities or Scopes Required for Platform Services</a>.</p>
 </td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32214e119 "><span class="ph uicontrol">Authorities</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d32214e121 ">By default, the client is assigned a few required authorities. For a new client, an administrator can choose the authorities to be added based on the selected grant type.<p class="p">If you choose the <samp class="ph codeph">client_credentials</samp> grant type, you must update the authorities with service specific authorities.</p>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32974e129 "><span class="ph uicontrol">Authorities</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d32974e131 ">By default, the client is assigned a few required authorities. For a new client, an administrator can choose the authorities to be added based on the selected grant type.<p class="p">If you choose the <samp class="ph codeph">client_credentials</samp> grant type, you must update the authorities with service specific authorities.</p>
 <p class="p">For a complete list of scopes to be added for each service, see <a class="xref" href="r_authorities_or_scopes_required_for_services.html#reference_ec1_t3d_bx">Authorities or Scopes Required for Platform Services</a>.</p>
 </td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32214e119 "><span class="ph uicontrol">Auto Approved Scopes</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d32214e121 ">Specify scopes that can be approved automatically for the client without explicit approval from resource owner.</td>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32974e129 "><span class="ph uicontrol">Auto Approved Scopes</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d32974e131 ">Specify scopes that can be approved automatically for the client without explicit approval from resource owner.</td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32214e119 "><span class="ph uicontrol">Redirect URI</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d32214e121 ">Specify a redirect URI to redirect client after login. For example, <samp class="ph codeph">http://example-app.com/welcome</samp>.<p class="p">This URI is used when you start using UAA as service provider for your external Identify provider.</p>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32974e129 "><span class="ph uicontrol">Redirect URI</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d32974e131 ">Specify a redirect URI to redirect client after login. For example, <samp class="ph codeph">http://example-app.com/welcome</samp>.<p class="p">This URI is used when you start using UAA as service provider for your external Identify provider.</p>
 </td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32214e119 "><span class="ph uicontrol">Access Token Validity</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d32214e121 ">Specifies the access token expiration time in ms. </td>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32974e129 "><span class="ph uicontrol">Access Token Validity</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d32974e131 ">Specifies the access token expiration time in ms. </td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32214e119 "><span class="ph uicontrol">Refresh Token Validity</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d32214e121 ">Specifies the refresh token expiration time in ms.</td>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32974e129 "><span class="ph uicontrol">Refresh Token Validity</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d32974e131 ">Specifies the refresh token expiration time in ms.</td>
 </tr>
-<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32214e119 "><span class="ph uicontrol">Allowed Providers</span></td>
-<td class="entry" valign="top" width="72.29916897506925%" headers="d32214e121 ">Specify the names of the external identity providers, if any. This field is required if you are using external identity providers with UAA as a service provider.</td>
+<tr class="row"><td class="entry" valign="top" width="27.70083102493075%" headers="d32974e129 "><span class="ph uicontrol">Allowed Providers</span></td>
+<td class="entry" valign="top" width="72.29916897506925%" headers="d32974e131 ">Specify the names of the external identity providers, if any. This field is required if you are using external identity providers with UAA as a service provider.</td>
 </tr>
 </tbody>
 </table>
@@ -85,6 +89,6 @@
 </div>
 <div class="related-links"></div>
 <div class="navfooter"><!---->
-<span class="navparent"><a class="link" href="t_creating_an_oauth_client.html" title="Procedure for creating additional OAuth2 client to access a UAA instance."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Creating an OAuth2 Client</span></a></span>  </div><div class="footer">WebHelp output generated by<a class="oxyFooter" href="http://www.oxygenxml.com" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/LogoOxygen100x22.png" alt="Oxygen"></img></span><span class="xmlauthor">XML Author</span></a></div>
+<span class="navparent"><a class="link" href="t_creating_an_oauth_client.html" title="Procedure for creating additional OAuth2 client to access a UAA instance."><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Creating an OAuth2 Client</span></a></span>  </div><div class="footer"><a class="oxyFooter" href="" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/GELogo1.jpg" height="36px" alt="General Electric"></img></span><span class="xmlauthor"> © 2015-2016 General Electric Company. All rights reserved.</span></a></div>
 </body>
 </html>

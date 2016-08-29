@@ -56,7 +56,8 @@
 .topictitle4 { margin-top: .83em; font-size: 1.17em; font-weight: bold; }
 .topictitle5 { font-size: 1.17em; font-weight: bold; }
 .topictitle6 { font-size: 1.17em; font-style: italic; }
-.sectiontitle { margin-top: 1em; margin-bottom: 0; color: black; font-size: 1.17em; font-weight: bold;}
+/* mspell 06-24-16 changed sectiontitle font-size from 1.17em */
+.sectiontitle { margin-top: 1em; margin-bottom: 0; color: black; font-size: 1em; font-weight: bold;}
 .section { margin-top: 1em; margin-bottom: 1em }
 .example { margin-top: 1em; margin-bottom: 1em }
 div.tasklabel { margin-top: 1em; margin-bottom: 1em; }

@@ -185,9 +185,7 @@ function loadIframe(dynamicURL) {
     var iframeHeader = document.createElement('IFRAME');
     iframeHeader.id = 'frm';
 	iframeHeader.name = 'frm';
-	// Avoid double encoding the topic path loaded in iFrame
-    // If dynamicURL is not encoded the decodeURI will not change it
-	dynamicURL = whUrl + encodeURI(decodeURI(dynamicURL));
+	dynamicURL = whUrl + encodeURI(dynamicURL);
     iframeHeader.src = dynamicURL;
     iframeHeader.frameBorder = 0;
     iframeHeader.align = 'center';

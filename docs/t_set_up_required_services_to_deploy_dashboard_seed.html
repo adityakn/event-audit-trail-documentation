@@ -2,7 +2,7 @@
 <!DOCTYPE html
   SYSTEM "about:legacy-compat">
 <html xml:lang="en-us" lang="en-us">
-<head><meta name="description" content="Deploy the Hello World application Predix-HelloWorld-WebApp-&lt;YourAppName&gt; for later use. See Deploying a Predix Hello World Web Application . Set up the services required to install the Dashboard ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Setting Up Required Services to Deploy the Dashboard Seed"></meta><meta name="DC.Creator" content="Joseph Aseo"></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_mkc_14c_mw"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Setting Up Required Services to Deploy the Dashboard Seed</title><!--  Generated with Oxygen version 17.1, build number 2016032212.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
+<head><meta name="description" content="Deploy the Hello World application Predix-HelloWorld-WebApp-&lt;YourAppName&gt; for later use. See Deploying a Predix Hello World Web Application . Set up the services required to install the Dashboard ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Setting Up Required Services to Deploy the Dashboard Seed"></meta><meta name="DC.Creator" content="Joseph Aseo"></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_mkc_14c_mw"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Setting Up Required Services to Deploy the Dashboard Seed</title><!--  Generated with Oxygen version 17.1, build number 2016020417.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
           
           var prefix = "index.html";
           
@@ -15,7 +15,7 @@
 
                                     <p class="p">Set up the services required to install the Dashboard Seed. See <a class="xref" href="t_setting_up_required_services_for_the_dashboard_seed.html#task_ick_l3c_t5">Setting Up Required Services to Install the Dashboard Seed</a>.</p>
 
-                                    <p class="p">You need the pathname of the <samp class="ph codeph">predix-seed</samp> directory where the Dashboard Seed project files are located (see <a class="xref" href="t_installing_dashboard_seed.html#task_skl_4cp_c5">Installing the Dashboard Seed</a>). </p>
+                                    <p class="p">You need the pathname of the <samp class="ph codeph">predix-seed</samp> directory where the Dashboard Seed project files are located. See <a class="xref" href="t_installing_dashboard_seed.html#task_skl_4cp_c5">Installing the Dashboard Seed</a>. </p>
 
                         </div>
 <div class="section context">
@@ -40,6 +40,33 @@
                                                             <pre class="pre codeblock">cd predix-seed</pre>
 
                                                 </div></li>
+<li class="li step stepexpand"><span class="ph cmd">Use the Cloud Foundry CLI to log into Cloud Foundry. </span><div class="itemgroup info">
+                                                            <pre class="pre codeblock">cf login -a &lt;API_Endpoint&gt;</pre>
+
+                                                            <p class="p">The <samp class="ph codeph">&lt;API_Endpoint&gt;</samp> value is included in the Predix invitation email that you receive when you register for an Predix.io user platform account. Depending on your Predix.io registration, the <samp class="ph codeph">&lt;API_Endpoint&gt;</samp> uses one of the following values:</p>
+
+                                                            <ul class="ul" id="task_mkc_14c_mw__ul_cyz_hrm_bx"><li class="li"><p class="p">Predix Basic</p>
+
+                                                                                    <samp class="ph codeph">https://api.system.aws-usw02-pr.ice.predix.io</samp></li>
+<li class="li"><p class="p">Predix Select</p>
+
+                                                                                    <samp class="ph codeph">https://api.system.asv-pr.ice.predix.io</samp></li>
+</ul>
+
+                                                            <p class="p">For example,</p>
+
+                                                            <pre class="pre codeblock">cf login -a https://api.system.aws-usw02-pr.ice.predix.io</pre>
+
+                                                </div><div class="itemgroup stepresult"> The command generates the following output: <pre class="pre codeblock">Email&gt; &lt;your_predix_login&gt; 
+Password&gt; &lt;your_predix_password&gt; 
+Authenticating...OK 
+Targeted org &lt;your_predix_org&gt; 
+Targeted space dev     
+API endpoint: https://api.system.aws-usw02-pr.ice.predix.io (API version: 2.28.0)   
+User: &lt;your_predix_login&gt; 
+Org:  &lt;your_predix_org&gt;  
+Space: dev</pre>
+</div></li>
 <li class="li step stepexpand"><span class="ph cmd">List the services in the Cloud Foundry marketplace by entering the following command:</span><div class="itemgroup info">
                                                             <pre class="pre codeblock">cf marketplace</pre>
 
@@ -73,6 +100,6 @@
 </ol>
 <div class="section postreq">See <a class="xref" href="t_creating_an_oauth2_client_to_access_dashboard_seed.html#task_llh_sz5_jv">Creating an OAuth2 Client to Access the Dashboard Seed</a>.</div>
 </div>
-<div class="navfooter"><!----></div><div class="footer">WebHelp output generated by<a class="oxyFooter" href="http://www.oxygenxml.com" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/LogoOxygen100x22.png" alt="Oxygen"></img></span><span class="xmlauthor">XML Author</span></a></div>
+<div class="navfooter"><!----></div><div class="footer"><a class="oxyFooter" href="" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/GELogo1.jpg" height="36px" alt="General Electric"></img></span><span class="xmlauthor"> © 2015-2016 General Electric Company. All rights reserved.</span></a></div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <!DOCTYPE html
   SYSTEM "about:legacy-compat">
 <html xml:lang="en-us" lang="en-us">
-<head><meta name="description" content="This procedure uses the UAA Command Line Interface (UAAC). For more information on installing UAAC, see https://github.com/cloudfoundry/cf-uaac . You need the following information to update the ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Updating the Oauth2 Client to Use View Service"></meta><meta name="DC.Creator" content="Joseph Aseo"></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_djb_x5v_q5"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Updating the Oauth2 Client to Use View Service</title><!--  Generated with Oxygen version 17.1, build number 2016032212.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
+<head><meta name="description" content="This procedure uses the UAA Command Line Interface (UAAC). For more information on installing UAAC, see https://github.com/cloudfoundry/cf-uaac . You need the following information to update the ..."></meta><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="copyright" content="(C) Copyright 2005"></meta><meta name="DC.rights.owner" content="(C) Copyright 2005"></meta><meta name="DC.Type" content="task"></meta><meta name="DC.Title" content="Updating the Oauth2 Client to Use View Service"></meta><meta name="DC.Creator" content="Joseph Aseo"></meta><meta name="DC.Format" content="XHTML"></meta><meta name="DC.Identifier" content="task_djb_x5v_q5"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Updating the Oauth2 Client to Use View Service</title><!--  Generated with Oxygen version 17.1, build number 2016020417.  --><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="oxygen-webhelp/resources/skins/skin.css"><!----></link><script type="text/javascript"><!--
           
           var prefix = "index.html";
           
@@ -30,18 +30,18 @@
 <div class="section context">
             <p class="p">You need to update the OAuth2 client to manage users with the User Account and Authentication (UAA) web service. The following client scopes define user access to the View service:</p>
 
-            <table cellpadding="4" cellspacing="0" summary="" id="task_djb_x5v_q5__simpletable_svq_s21_t5" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d31127e84" class="stentry">Client Scope</th>
-<th valign="bottom" align="left" id="d31127e86" class="stentry">Description</th>
+            <table cellpadding="4" cellspacing="0" summary="" id="task_djb_x5v_q5__simpletable_svq_s21_t5" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d31884e84" class="stentry">Client Scope</th>
+<th valign="bottom" align="left" id="d31884e86" class="stentry">Description</th>
 </tr>
-<tr class="strow"><td valign="top" headers="d31127e84" class="stentry"><samp class="ph codeph">views.zones.&lt;instanceId&gt;.user</samp>
+<tr class="strow"><td valign="top" headers="d31884e84" class="stentry"><samp class="ph codeph">views.zones.&lt;instanceId&gt;.user</samp>
                     </td>
-<td valign="top" headers="d31127e86" class="stentry">A user has permission to access the View service <samp class="ph codeph">instanceId</samp></td>
+<td valign="top" headers="d31884e86" class="stentry">A user has permission to access the View service <samp class="ph codeph">instanceId</samp></td>
 </tr>
-<tr class="strow"><td valign="top" headers="d31127e84" class="stentry"><samp class="ph codeph">views.admin.user</samp></td>
-<td valign="top" headers="d31127e86" class="stentry">User role can perform all CRUD operations on <a class="xref" href="c_cards.html#concept_b1d48da2-ba0a-4711-9108-877eece4d662">card</a> and <a class="xref" href="c_decks.html#concept_66f824ef-8aec-498d-8a9e-843b426f2c92">deck</a> objects using the View Service APIs.</td>
+<tr class="strow"><td valign="top" headers="d31884e84" class="stentry"><samp class="ph codeph">views.admin.user</samp></td>
+<td valign="top" headers="d31884e86" class="stentry">User role can perform all CRUD operations on <a class="xref" href="c_cards.html#concept_b1d48da2-ba0a-4711-9108-877eece4d662">card</a> and <a class="xref" href="c_decks.html#concept_66f824ef-8aec-498d-8a9e-843b426f2c92">deck</a> objects using the View Service APIs.</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d31127e84" class="stentry"><samp class="ph codeph">views.power.user</samp></td>
-<td valign="top" headers="d31127e86" class="stentry">User role like <samp class="ph codeph">views.admin.user</samp>, but cannot perform DELETE operations on card and deck objects using the View service APIs.</td>
+<tr class="strow"><td valign="top" headers="d31884e84" class="stentry"><samp class="ph codeph">views.power.user</samp></td>
+<td valign="top" headers="d31884e86" class="stentry">User role like <samp class="ph codeph">views.admin.user</samp>, but cannot perform DELETE operations on card and deck objects using the View service APIs.</td>
 </tr>
 <tr class="strow"></tr>
 <tr class="strow"></tr>
@@ -87,6 +87,6 @@ uaac member add views.power.user &lt;my-user&gt;
                 </div></li>
 </ol>
 </div>
-<div class="navfooter"><!----></div><div class="footer">WebHelp output generated by<a class="oxyFooter" href="http://www.oxygenxml.com" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/LogoOxygen100x22.png" alt="Oxygen"></img></span><span class="xmlauthor">XML Author</span></a></div>
+<div class="navfooter"><!----></div><div class="footer"><a class="oxyFooter" href="" target="_blank"><span class="oXygenLogo"><img src="oxygen-webhelp/resources/img/GELogo1.jpg" height="36px" alt="General Electric"></img></span><span class="xmlauthor"> © 2015-2016 General Electric Company. All rights reserved.</span></a></div>
 </body>
 </html>
